@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penetration Management Dashboard (Demo)</title>
+<style>
+:root{--navy:#0B1929;--amber:#E8A33D;--blue:#3A9FD5;--green:#21A366;--red:#C0392B;--orange:#E67E22;--grey:#5A6772;--light:#F4F6F9;--card:#FFFFFF;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;}
+body{background:var(--light);color:var(--navy);}
+.header{background:var(--navy);color:#fff;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.header-left{display:flex;align-items:center;gap:1rem;}
+.logo{font-size:1.3rem;font-weight:700;color:var(--amber);letter-spacing:2px;}
+.asset-label{font-size:0.7rem;color:#B8C4D4;}
+.asset-name{font-size:0.95rem;font-weight:600;color:#fff;}
+.demo-badge{background:var(--amber);color:var(--navy);font-size:0.7rem;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:4px;}
+.header-right{font-size:0.72rem;color:#B8C4D4;text-align:right;display:flex;align-items:center;gap:16px;}
+.upload-btn{background:var(--amber);color:var(--navy);border:none;padding:7px 16px;border-radius:5px;font-size:0.78rem;font-weight:700;cursor:pointer;}
+.nav{background:#132337;display:flex;border-bottom:3px solid var(--amber);overflow-x:auto;}
+.nav-tab{padding:0.75rem 1.4rem;font-size:0.8rem;font-weight:600;color:#B8C4D4;cursor:pointer;border:none;background:none;text-transform:uppercase;letter-spacing:0.5px;}
+.nav-tab.active{color:var(--amber);border-bottom:3px solid var(--amber);margin-bottom:-3px;background:rgba(232,163,61,0.1);}
+.content{padding:1.5rem 2rem;display:none;}
+.content.active{display:block;}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.kpi-card{background:var(--card);border-radius:8px;padding:1.2rem;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-top:4px solid var(--blue);}
+.kpi-card.red{border-top-color:var(--red);}.kpi-card.orange{border-top-color:var(--orange);}.kpi-card.green{border-top-color:var(--green);}.kpi-card.amber{border-top-color:var(--amber);}.kpi-card.grey{border-top-color:var(--grey);}
+.kpi-value{font-size:2rem;font-weight:700;color:var(--navy);}
+.kpi-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--grey);margin-top:4px;}
+.kpi-sub{font-size:0.74rem;color:var(--grey);margin-top:2px;}
+.card{background:var(--card);border-radius:8px;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:1.5rem;}
+.card-title{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--grey);margin-bottom:1rem;}
+.barrier-row{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0;border-bottom:1px solid #EEF0F2;}
+.barrier-row:last-child{border-bottom:none;}
+.barrier-label{font-size:0.85rem;font-weight:600;}.barrier-tag{font-size:0.7rem;color:var(--grey);}
+.barrier-pct{font-size:1.1rem;font-weight:700;text-align:right;}
+.barrier-pct.good{color:var(--green);}.barrier-pct.warn{color:var(--orange);}.barrier-pct.bad{color:var(--red);}
+.prog-bar{height:6px;border-radius:3px;background:#EEF0F2;margin-top:4px;width:160px;}
+.prog-fill{height:6px;border-radius:3px;}
+table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+th{background:var(--navy);color:#fff;padding:0.6rem 0.8rem;text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;}
+td{padding:0.55rem 0.8rem;border-bottom:1px solid #EEF0F2;}
+tr:hover td{background:#F8F9FC;}
+.grade{display:inline-block;width:26px;height:26px;border-radius:50%;text-align:center;line-height:26px;font-weight:700;font-size:0.8rem;color:#fff;}
+.g1{background:#27AE60;}.g2{background:#2ECC71;}.g3{background:var(--orange);}.g4{background:#E74C3C;}.g5{background:#922B21;}
+.tr-yes{color:var(--red);font-weight:700;font-size:0.75rem;}.tr-no{color:var(--grey);font-size:0.75rem;}
+.filter-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center;}
+.filter-row select{padding:0.4rem 0.7rem;border:1px solid #DDE1E7;border-radius:6px;font-size:0.8rem;background:#fff;}
+.filter-row label{font-size:0.75rem;color:var(--grey);font-weight:600;}
+.banner{background:#FEF3CD;border-left:4px solid var(--amber);border-radius:4px;padding:0.6rem 0.8rem;font-size:0.78rem;margin-bottom:1rem;color:#7D5A00;}
+.footer{background:var(--navy);color:#5A7A9A;font-size:0.7rem;text-align:center;padding:0.6rem;margin-top:2rem;}
+.upload-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;}
+.upload-modal.open{display:flex;}
+.upload-box{background:#fff;border-radius:12px;width:520px;max-width:95vw;overflow:hidden;}
+.upload-box-header{background:var(--navy);padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;}
+.upload-box-header h3{color:#fff;font-size:1rem;}
+.upload-box-header button{background:none;border:none;color:#B8C4D4;font-size:1.2rem;cursor:pointer;}
+.upload-body{padding:1.4rem;}
+.drop-zone{border:2px dashed #B8C4D4;border-radius:8px;padding:1.8rem;text-align:center;cursor:pointer;background:#f8fafc;}
+.drop-zone:hover{border-color:var(--amber);}
+.drop-zone p{font-size:0.85rem;color:var(--grey);margin-top:6px;}
+#csv-file-input{display:none;}
+.upload-note{font-size:0.75rem;color:var(--grey);margin-top:0.9rem;}
+.btn-cancel{background:#EEF0F2;color:var(--navy);border:none;padding:8px 20px;border-radius:5px;font-size:0.85rem;cursor:pointer;font-weight:600;margin-top:1rem;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left">
+    <div>
+      <div class="logo">MAKO OFFSHORE</div>
+      <div style="font-size:0.62rem;color:#5A7A9A;letter-spacing:1px">PENETRATION MANAGEMENT DASHBOARD</div>
+    </div>
+    <div style="width:1px;height:36px;background:#1E3A5A;margin:0 0.5rem"></div>
+    <div>
+      <div class="asset-label">ACTIVE ASSET</div>
+      <div class="asset-name">Demo Alpha Platform &nbsp;·&nbsp; <span style="color:#B8C4D4;font-weight:400">Northern Demo Sector · Sample Operator</span></div>
+    </div>
+  </div>
+  <div class="header-right">
+    <button class="upload-btn" onclick="openUpload()">⬆ Import Register CSV</button>
+    <span class="demo-badge">DEMO DATA · NOT LIVE</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-tab active" onclick="showTab('overview',this)">Asset Overview</button>
+  <button class="nav-tab" onclick="showTab('register',this)">Penetration Register</button>
+  <button class="nav-tab" onclick="showTab('risk',this)">Risk &amp; Compliance</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="content active" id="tab-overview">
+  <div class="kpi-row" id="kpi-row"></div>
+  <div class="card">
+    <div class="card-title">TR Boundary &amp; Barrier Performance</div>
+    <div id="tr-banner"></div>
+    <div id="barrier-panel"></div>
+    <div style="font-size:0.7rem;color:var(--grey);margin-top:0.8rem">Performance standard: at least 85% of rated barriers performing to the SCR 2015 standard.</div>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<div class="content" id="tab-register">
+  <div class="filter-row">
+    <label>Grade</label>
+    <select id="f-grade" onchange="renderTable()"><option value="all">All grades</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+    <label>TR boundary</label>
+    <select id="f-tr" onchange="renderTable()"><option value="all">All</option><option value="yes">TR only</option><option value="no">Non-TR</option></select>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <table><thead><tr><th>Tag ID</th><th>Deck</th><th>Module</th><th>Rating</th><th>TR</th><th>Service</th><th>Seal</th><th>Grade</th><th>Status</th></tr></thead>
+    <tbody id="reg-body"></tbody></table>
+  </div>
+</div>
+
+<!-- RISK -->
+<div class="content" id="tab-risk">
+  <div class="card">
+    <div class="card-title">Performance Standard Tracker</div>
+    <div id="ps-tracker"></div>
+  </div>
+</div>
+
+<div class="footer">MAKO Offshore Ltd · Penetration Management Dashboard · Demo data, not live · Powered by Integr8te</div>
+
+<!-- UPLOAD MODAL -->
+<div class="upload-modal" id="upload-modal">
+  <div class="upload-box">
+    <div class="upload-box-header"><h3>Import Penetration Register CSV</h3><button onclick="closeUpload()">✕</button></div>
+    <div class="upload-body">
+      <div class="drop-zone" id="drop-zone" onclick="document.getElementById('csv-file-input').click()">
+        <div style="font-size:2rem">📂</div>
+        <p><strong>Click to select</strong> a register CSV to load real data</p>
+      </div>
+      <input type="file" id="csv-file-input" accept=".csv">
+      <div class="upload-note">Expected columns include: Tag, Deck, Module, Rating, TR (Yes/No), Service, Seal, Grade (1 to 5), Status. The dashboard recomputes every figure from the file. Nothing is uploaded anywhere; it is read in your browser.</div>
+      <button class="btn-cancel" onclick="closeUpload()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---- FICTIONAL DEMO DATASET (no real operator, no real asset) ---- */
+function buildDemoData(){
+  const decks=["Cellar Deck","Lower Deck","Main Deck","Top Deck"];
+  const mods=["M10","M12","M14","TR-West","PR-B","C3","C4"];
+  const ratings=["A-0","A-60","H-60","H-120"];
+  const services=["HV Power Cable","HC Liquid Line","Instrument Cable","HC Gas Line","Drains","Water Service"];
+  const seals=["Generic Resin Plug","Generic Fire Seal","Composite Plug","Cable Transit Block"];
+  const statuses=["Performing","Materials Confirmed","In Progress","Hold - Access","QA Pending","Closed"];
+  // deterministic grade distribution across ~120 records: G1 46, G2 32, G3 22, G4 12, G5 6, plus 8 unknown
+  const plan=[[1,46],[2,32],[3,22],[4,12],[5,6],[0,8]];
+  const rows=[]; let n=1;
+  plan.forEach(([grade,count])=>{
+    for(let i=0;i<count;i++){
+      const deck=decks[n%decks.length];
+      const rating=ratings[(n+grade)%ratings.length];
+      const tr=(rating==="H-120"||rating==="H-60")?((n%2)===0):false; // some H-rated are TR boundary
+      rows.push({
+        tag:"DEMO-"+String(n).padStart(4,"0"),
+        deck, module:mods[n%mods.length], rating, tr,
+        service:services[n%services.length], seal:seals[n%seals.length],
+        grade, // 0 = unsurveyed
+        status: grade>=4 ? "In Progress" : statuses[n%statuses.length]
+      });
+      n++;
+    }
+  });
+  return rows;
+}
+let DATA = buildDemoData();
+
+/* ---- COMPUTE EVERYTHING FROM DATA ---- */
+function pct(a,b){ return b===0 ? 0 : Math.round((a/b)*1000)/10; }
+function computeKpis(){
+  const total=DATA.length;
+  const surveyed=DATA.filter(r=>r.grade>=1);
+  const performing=DATA.filter(r=>r.grade===1||r.grade===2).length;
+  const degraded=DATA.filter(r=>r.grade===3||r.grade===4).length;
+  const failed=DATA.filter(r=>r.grade===5).length;
+  const unknown=DATA.filter(r=>r.grade===0).length;
+  return {total,performing,degraded,failed,unknown,surveyedCount:surveyed.length};
+}
+function renderKpis(){
+  const k=computeKpis();
+  document.getElementById("kpi-row").innerHTML=`
+    <div class="kpi-card blue"><div class="kpi-value">${k.total}</div><div class="kpi-label">Total Penetrations</div><div class="kpi-sub">On asset register</div></div>
+    <div class="kpi-card green"><div class="kpi-value">${k.performing}</div><div class="kpi-label">Performing</div><div class="kpi-sub">Grades 1 to 2 · ${pct(k.performing,k.total)}%</div></div>
+    <div class="kpi-card orange"><div class="kpi-value">${k.degraded}</div><div class="kpi-label">Degraded</div><div class="kpi-sub">Grades 3 to 4 · ${pct(k.degraded,k.total)}%</div></div>
+    <div class="kpi-card red"><div class="kpi-value">${k.failed}</div><div class="kpi-label">Failed / Immediate</div><div class="kpi-sub">Grade 5 · ${pct(k.failed,k.total)}%</div></div>
+    <div class="kpi-card grey"><div class="kpi-value">${k.unknown}</div><div class="kpi-label">Unsurveyed</div><div class="kpi-sub">${pct(k.unknown,k.total)}% remaining</div></div>`;
+}
+function barrierPerf(filterFn){
+  const set=DATA.filter(r=>r.grade>=1).filter(filterFn);
+  const perf=set.filter(r=>r.grade===1||r.grade===2).length;
+  return {p:pct(perf,set.length), n:set.length};
+}
+function band(v){ return v>=85?"good":(v>=75?"warn":"bad"); }
+function fill(v){ return v>=85?"#21A366":(v>=75?"#E67E22":"#C0392B"); }
+function renderBarriers(){
+  const tr=barrierPerf(r=>r.tr);
+  document.getElementById("tr-banner").innerHTML = tr.p<85
+    ? `<div class="banner">TR boundary performance at <strong>${tr.p}%</strong>, below the 85% performance standard. Remediation programme to be evidenced to the duty holder.</div>` : "";
+  const rows=[
+    ["TR Boundary Seals","H-60 / H-120 · Safety critical", barrierPerf(r=>r.tr)],
+    ["H-120 Barriers","Process / TR primary boundaries", barrierPerf(r=>r.rating==="H-120")],
+    ["H-60 Barriers","Module boundaries", barrierPerf(r=>r.rating==="H-60")],
+    ["A-60 Barriers","Structural fire divisions", barrierPerf(r=>r.rating==="A-60")],
+    ["A-0 Barriers","Lower-risk divisions", barrierPerf(r=>r.rating==="A-0")],
+  ];
+  document.getElementById("barrier-panel").innerHTML = rows.map(([l,t,b])=>`
+    <div class="barrier-row"><div><div class="barrier-label">${l}</div><div class="barrier-tag">${t} · ${b.n} rated</div></div>
+    <div><div class="barrier-pct ${band(b.p)}">${b.p}%</div><div class="prog-bar"><div class="prog-fill" style="width:${b.p}%;background:${fill(b.p)}"></div></div></div></div>`).join("");
+}
+function renderPsTracker(){
+  const rows=[["H-120 Barriers","TR primary / process"],["H-60 Barriers","Module boundaries"],["A-60 Barriers","Structural fire divisions"],["A-0 Barriers","Lower-risk divisions"]];
+  document.getElementById("ps-tracker").innerHTML = rows.map(([l,t])=>{
+    const r=l.split(" ")[0]; const b=barrierPerf(x=>x.rating===r);
+    const meet = b.p>=85 ? "MEETING STANDARD":"BELOW STANDARD";
+    return `<div class="barrier-row"><div><div class="barrier-label">${l}</div><div class="barrier-tag">${t}</div></div>
+    <div style="text-align:right"><div class="barrier-pct ${band(b.p)}">${b.p}%</div><div class="barrier-tag" style="color:${fill(b.p)};font-weight:700">${meet}</div></div></div>`;
+  }).join("");
+}
+function gradeBadge(g){ return g===0?'<span class="tr-no">N/S</span>':`<span class="grade g${g}">${g}</span>`; }
+function renderTable(){
+  const fg=document.getElementById("f-grade").value, ft=document.getElementById("f-tr").value;
+  const rows=DATA.filter(r=>{
+    if(fg!=="all" && String(r.grade)!==fg) return false;
+    if(ft==="yes" && !r.tr) return false;
+    if(ft==="no" && r.tr) return false;
+    return true;
+  });
+  document.getElementById("reg-body").innerHTML = rows.map(r=>`<tr>
+    <td>${r.tag}</td><td>${r.deck}</td><td>${r.module}</td><td>${r.rating}</td>
+    <td>${r.tr?'<span class="tr-yes">YES</span>':'<span class="tr-no">No</span>'}</td>
+    <td>${r.service}</td><td>${r.seal}</td><td>${gradeBadge(r.grade)}</td><td>${r.status}</td></tr>`).join("")
+    || `<tr><td colspan="9" style="text-align:center;color:var(--grey);padding:1.5rem">No matching records.</td></tr>`;
+}
+function renderAll(){ renderKpis(); renderBarriers(); renderTable(); renderPsTracker(); }
+
+/* ---- TABS ---- */
+function showTab(id,el){
+  document.querySelectorAll(".content").forEach(c=>c.classList.remove("active"));
+  document.getElementById("tab-"+id).classList.add("active");
+  document.querySelectorAll(".nav-tab").forEach(t=>t.classList.remove("active"));
+  el.classList.add("active");
+}
+
+/* ---- CSV IMPORT (client-side only) ---- */
+function openUpload(){ document.getElementById("upload-modal").classList.add("open"); }
+function closeUpload(){ document.getElementById("upload-modal").classList.remove("open"); }
+document.getElementById("csv-file-input").addEventListener("change",e=>{
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{ DATA=parseCsv(ev.target.result); renderAll(); closeUpload(); }
+    catch(err){ alert("Could not read that CSV: "+err.message); }
+  };
+  reader.readAsText(file);
+});
+function parseCsv(text){
+  const lines=text.split(/\r?\n/).filter(l=>l.trim().length);
+  const head=lines[0].split(",").map(h=>h.trim().toLowerCase());
+  const idx=name=>head.findIndex(h=>h.includes(name));
+  const iTag=idx("tag"),iDeck=idx("deck"),iMod=idx("module"),iRate=idx("rating"),iTr=idx("tr"),iSvc=idx("service"),iSeal=idx("seal"),iGrade=idx("grade"),iStat=idx("status");
+  const out=[];
+  for(let i=1;i<lines.length;i++){
+    const c=lines[i].split(",");
+    const g=parseInt((c[iGrade]||"").replace(/[^0-9]/g,""))||0;
+    out.push({tag:(c[iTag]||"").trim(),deck:(c[iDeck]||"").trim(),module:(c[iMod]||"").trim(),
+      rating:(c[iRate]||"").trim(),tr:/yes|y|true/i.test(c[iTr]||""),service:(c[iSvc]||"").trim(),
+      seal:(c[iSeal]||"").trim(),grade:g,status:(c[iStat]||"").trim()||"-"});
+  }
+  if(!out.length) throw new Error("no data rows found");
+  return out;
+}
+
+renderAll();
+</script>
+</body>
+</html>

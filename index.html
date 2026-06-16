@@ -3,14 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Penetration Management Dashboard (Demo)</title>
+<title>LICHA · Penetration Management Dashboard (Demo)</title>
 <style>
-:root{--navy:#0B1929;--amber:#E8A33D;--blue:#3A9FD5;--green:#21A366;--red:#C0392B;--orange:#E67E22;--grey:#5A6772;--light:#F4F6F9;--card:#FFFFFF;}
+:root{--navy:#0B1929;--amber:#E8A33D;--blue:#3A9FD5;--licha:#5FE3D4;--green:#21A366;--red:#C0392B;--orange:#E67E22;--grey:#5A6772;--light:#F4F6F9;--card:#FFFFFF;}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;}
 body{background:var(--light);color:var(--navy);}
-.header{background:var(--navy);color:#fff;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.header{background:var(--navy);color:#fff;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px;}
 .header-left{display:flex;align-items:center;gap:1rem;}
 .logo{font-size:1.3rem;font-weight:700;color:var(--amber);letter-spacing:2px;}
+.sub-brand{display:flex;align-items:center;gap:8px;margin-top:2px;}
+.licha-mark{font-size:0.95rem;font-weight:700;color:var(--licha);letter-spacing:3px;text-shadow:0 0 8px rgba(95,227,212,0.45);}
+.licha-divider{color:#5A7A9A;font-size:0.7rem;}
+.licha-tagline{font-size:0.68rem;color:#B8C4D4;font-style:italic;letter-spacing:0.3px;}
+.licha-info{display:inline-block;width:14px;height:14px;border-radius:50%;border:1px solid #5A7A9A;color:#B8C4D4;font-size:0.62rem;line-height:12px;text-align:center;cursor:help;margin-left:4px;font-style:normal;}
+.licha-info:hover{color:var(--licha);border-color:var(--licha);}
 .asset-label{font-size:0.7rem;color:#B8C4D4;}
 .asset-name{font-size:0.95rem;font-weight:600;color:#fff;}
 .demo-badge{background:var(--amber);color:var(--navy);font-size:0.7rem;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:4px;}
@@ -48,6 +54,7 @@ tr:hover td{background:#F8F9FC;}
 .filter-row label{font-size:0.75rem;color:var(--grey);font-weight:600;}
 .banner{background:#FEF3CD;border-left:4px solid var(--amber);border-radius:4px;padding:0.6rem 0.8rem;font-size:0.78rem;margin-bottom:1rem;color:#7D5A00;}
 .footer{background:var(--navy);color:#5A7A9A;font-size:0.7rem;text-align:center;padding:0.6rem;margin-top:2rem;}
+.footer .footer-licha{color:var(--licha);font-weight:700;letter-spacing:2px;}
 .upload-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;}
 .upload-modal.open{display:flex;}
 .upload-box{background:#fff;border-radius:12px;width:520px;max-width:95vw;overflow:hidden;}
@@ -61,6 +68,15 @@ tr:hover td{background:#F8F9FC;}
 #csv-file-input{display:none;}
 .upload-note{font-size:0.75rem;color:var(--grey);margin-top:0.9rem;}
 .btn-cancel{background:#EEF0F2;color:var(--navy);border:none;padding:8px 20px;border-radius:5px;font-size:0.85rem;cursor:pointer;font-weight:600;margin-top:1rem;}
+.about-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;}
+.about-modal.open{display:flex;}
+.about-box{background:#fff;border-radius:12px;width:520px;max-width:95vw;overflow:hidden;}
+.about-box-header{background:var(--navy);padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;}
+.about-box-header h3{color:var(--licha);font-size:1rem;letter-spacing:3px;text-shadow:0 0 6px rgba(95,227,212,0.45);}
+.about-box-header button{background:none;border:none;color:#B8C4D4;font-size:1.2rem;cursor:pointer;}
+.about-body{padding:1.4rem;font-size:0.85rem;line-height:1.5;color:var(--navy);}
+.about-body p{margin-bottom:0.8rem;}
+.about-body em{color:var(--grey);}
 </style>
 </head>
 <body>
@@ -68,9 +84,14 @@ tr:hover td{background:#F8F9FC;}
   <div class="header-left">
     <div>
       <div class="logo">MAKO OFFSHORE</div>
-      <div style="font-size:0.62rem;color:#5A7A9A;letter-spacing:1px">PENETRATION MANAGEMENT DASHBOARD</div>
+      <div class="sub-brand">
+        <span class="licha-mark">LICHA</span>
+        <span class="licha-divider">·</span>
+        <span class="licha-tagline">Shining a light on all things</span>
+        <span class="licha-info" onclick="openAbout()" title="About LICHA">i</span>
+      </div>
     </div>
-    <div style="width:1px;height:36px;background:#1E3A5A;margin:0 0.5rem"></div>
+    <div style="width:1px;height:42px;background:#1E3A5A;margin:0 0.5rem"></div>
     <div>
       <div class="asset-label">ACTIVE ASSET</div>
       <div class="asset-name">Demo Alpha Platform &nbsp;·&nbsp; <span style="color:#B8C4D4;font-weight:400">Northern Demo Sector · Sample Operator</span></div>
@@ -121,7 +142,7 @@ tr:hover td{background:#F8F9FC;}
   </div>
 </div>
 
-<div class="footer">MAKO Offshore Ltd · Penetration Management Dashboard · Demo data, not live · Powered by Integr8te</div>
+<div class="footer">MAKO Offshore Ltd &nbsp;·&nbsp; <span class="footer-licha">LICHA</span> &nbsp;·&nbsp; Shining a light on all things &nbsp;·&nbsp; Demo data, not live &nbsp;·&nbsp; Powered by Integr8te</div>
 
 <!-- UPLOAD MODAL -->
 <div class="upload-modal" id="upload-modal">
@@ -135,6 +156,19 @@ tr:hover td{background:#F8F9FC;}
       <input type="file" id="csv-file-input" accept=".csv">
       <div class="upload-note">Expected columns include: Tag, Deck, Module, Rating, TR (Yes/No), Service, Seal, Grade (1 to 5), Status. The dashboard recomputes every figure from the file. Nothing is uploaded anywhere; it is read in your browser.</div>
       <button class="btn-cancel" onclick="closeUpload()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT LICHA MODAL -->
+<div class="about-modal" id="about-modal">
+  <div class="about-box">
+    <div class="about-box-header"><h3>LICHA</h3><button onclick="closeAbout()">✕</button></div>
+    <div class="about-body">
+      <p><strong>LICHA</strong> is MAKO Offshore's master penetration register and integrity intelligence platform.</p>
+      <p>The name comes from <em>Dalatias licha</em>, the kitefin shark, the largest known bioluminescent vertebrate. It lives in the deep ocean and lights its own way through the dark.</p>
+      <p>LICHA does the same for offshore asset integrity: it shines a light on the penetrations, seals, and boundary elements that have been hidden in fragmented data and tribal knowledge, so the operator can see, evidence, and act with confidence.</p>
+      <p style="font-size:0.78rem;color:var(--grey);margin-top:1rem;">Shining a light on all things.</p>
     </div>
   </div>
 </div>
@@ -274,6 +308,10 @@ function parseCsv(text){
   if(!out.length) throw new Error("no data rows found");
   return out;
 }
+
+/* ---- ABOUT LICHA MODAL ---- */
+function openAbout(){ document.getElementById("about-modal").classList.add("open"); }
+function closeAbout(){ document.getElementById("about-modal").classList.remove("open"); }
 
 renderAll();
 </script>

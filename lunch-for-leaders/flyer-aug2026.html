@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunch4Leaders · August 2026</title>
+<style>
+@page { size: A4 portrait; margin: 0; }
+:root{
+  --navy:#0B1F3A; --navy2:#12294a; --teal:#17B0A5; --gold:#E0A73C;
+  --ink:#0B1F3A; --paper:#F7F5EF; --line:rgba(255,255,255,0.14);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#5a6270;font-family:'Segoe UI',Helvetica,Arial,sans-serif;display:flex;justify-content:center;padding:24px;}
+.page{
+  width:794px;height:1123px;background:var(--navy);color:#fff;position:relative;overflow:hidden;
+  box-shadow:0 18px 60px rgba(0,0,0,0.4);
+}
+/* decorative */
+.glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:0.5;}
+.glow.t{width:420px;height:420px;background:#0e5f6b;top:-160px;right:-120px;}
+.glow.b{width:460px;height:460px;background:#123a63;bottom:-200px;left:-160px;}
+.rule{height:6px;background:linear-gradient(90deg,var(--teal),var(--gold));}
+.wrap{position:relative;z-index:2;padding:54px 58px 0;height:100%;display:flex;flex-direction:column;}
+
+.brandrow{display:flex;justify-content:space-between;align-items:center;}
+.brand{font-size:22px;font-weight:800;letter-spacing:3px;}
+.brand span{color:var(--teal);}
+.hosted{font-size:11px;letter-spacing:2px;color:#9fb0c4;text-transform:uppercase;text-align:right;line-height:1.5;}
+
+.kicker{margin-top:46px;font-size:13px;letter-spacing:6px;color:var(--gold);text-transform:uppercase;font-weight:700;}
+.title{margin-top:10px;font-size:74px;line-height:0.98;font-weight:800;letter-spacing:-1px;}
+.title em{font-style:normal;color:var(--teal);}
+.lede{margin-top:20px;font-size:16.5px;line-height:1.55;color:#d7dee8;max-width:600px;}
+
+.panel{margin-top:30px;background:rgba(255,255,255,0.05);border:1px solid var(--line);border-radius:16px;padding:26px 30px;display:grid;grid-template-columns:1fr 1fr;gap:18px 26px;}
+.panel .item .lab{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:#8ea3ba;}
+.panel .item .val{font-size:20px;font-weight:700;margin-top:4px;}
+.panel .item .val small{display:block;font-size:12.5px;font-weight:500;color:#b9c4d2;margin-top:2px;}
+.panel .full{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:16px;}
+
+.value{margin-top:26px;}
+.value h3{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.value .row{display:flex;gap:18px;margin-top:14px;}
+.value .card{flex:1;background:rgba(23,176,165,0.08);border:1px solid rgba(23,176,165,0.28);border-radius:12px;padding:14px 16px;}
+.value .card b{display:block;font-size:14px;margin-bottom:5px;color:#fff;}
+.value .card p{font-size:12.5px;line-height:1.45;color:#c7d0dc;}
+
+.scan{margin-top:24px;display:flex;align-items:center;gap:22px;background:rgba(255,255,255,0.04);border:1px dashed rgba(255,255,255,0.22);border-radius:14px;padding:18px 22px;}
+.qr{width:104px;height:104px;border-radius:10px;background:
+  linear-gradient(45deg,rgba(255,255,255,0.9) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.9) 75%),
+  linear-gradient(45deg,rgba(255,255,255,0.9) 25%,#fff 25%,#fff 75%,rgba(255,255,255,0.9) 75%);
+  background-size:26px 26px;background-position:0 0,13px 13px;background-color:#fff;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.qr span{font-size:9px;color:var(--navy);font-weight:700;background:#fff;padding:2px 4px;}
+.scan .txt b{font-size:15px;}
+.scan .txt p{font-size:12.5px;line-height:1.45;color:#c7d0dc;margin-top:4px;max-width:430px;}
+
+.foot{margin-top:auto;padding:22px 0 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;}
+.foot .l{font-size:12.5px;color:#c7d0dc;line-height:1.5;}
+.foot .l b{color:#fff;}
+.foot .r{text-align:right;font-size:11px;color:#8ea3ba;letter-spacing:1px;}
+.pill{display:inline-block;background:var(--gold);color:var(--navy);font-weight:800;font-size:12px;letter-spacing:1px;padding:5px 12px;border-radius:20px;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="glow t"></div>
+  <div class="glow b"></div>
+  <div class="wrap">
+    <div class="brandrow">
+      <div class="brand">INTEGR<span>8</span>TE</div>
+      <div class="hosted">Hosted by Grant Blackaby<br>Aberdeen · Energy &amp; Business Leaders</div>
+    </div>
+
+    <div class="kicker">You're invited · Invitation only</div>
+    <div class="title">Lunch<em>4</em>Leaders</div>
+    <div class="lede">Our relaxed, invitation-only lunch is back. A small table of Aberdeen's energy and business leaders, good food, and genuine conversation. No pitches, no panels, just the people worth knowing in one room.</div>
+
+    <div class="panel">
+      <div class="item"><div class="lab">Date</div><div class="val">Thursday 27 August 2026<small>Arrive 12:30pm · lunch 1:00–2:30pm</small></div></div>
+      <div class="item"><div class="lab">Places</div><div class="val">16 seats only<small>Priority to June's confirmed guests</small></div></div>
+      <div class="item"><div class="lab">Venue</div><div class="val">Private dining · Central Aberdeen<small>Confirmed to guests on booking</small></div></div>
+      <div class="item"><div class="lab">Your seat</div><div class="val">£30 per person<small>Two courses &amp; a drink · book to confirm</small></div></div>
+    </div>
+
+    <div class="value">
+      <h3>New this time — 10 minutes worth turning up early for</h3>
+      <div class="row">
+        <div class="card"><b>AI for Leaders</b><p>A short, no-jargon briefing over coffee: what good AI governance actually looks like for a business like yours, and where leaders are getting caught out.</p></div>
+        <div class="card"><b>Know where you stand</b><p>A quick self-assessment you can run yourself, plus a first look at our Leaders' governance workshop.</p></div>
+      </div>
+    </div>
+
+    <div class="scan">
+      <div class="qr"><span>SCAN ME</span></div>
+      <div class="txt">
+        <b>Scan on the day — take the pack home</b>
+        <p>One scan downloads the Leaders' Pack: draft AI policy, risk assessment, impact assessment and governance checklist, plus details of the face-to-face workshop. No time needed on the day — it's all yours to use later.</p>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="l"><b>To claim a seat:</b> reply to Grant's invitation.<br>Payment secures your place · limited to 16.</div>
+      <div class="r"><span class="pill">LUNCH4LEADERS</span><br><br>Integr8te Ltd · grant@integr8te.uk · 07943 070730</div>
+    </div>
+  </div>
+  <div class="rule" style="position:absolute;bottom:0;left:0;right:0;z-index:3;"></div>
+</div>
+</body>
+</html>

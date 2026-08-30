@@ -1,44 +1,45 @@
 # Shopping List
 
-Quantities assume a family shop for five days — adjust to suit.
+Two adults plus Lola, five days. Lunch wraps counted for the adults only.
 
-## Meat & fish
-- Beef mince — 1 kg (tacos Mon + mince & tatties Wed)
+## Meat
+- Beef mince — 750 g (tacos Mon + mince & tatties Wed)
 - Chicken breasts — 6 (lunch wraps + Thu arrabbiata)
-- Chicken legs/thighs — 6–8 (Tue)
-- Steak — 500 g strips or frying steak (Fri fajitas)
+- Extra chicken breast — 1 (Lola's chicken & rice, Wed)
+- Chicken legs — 4–6 (Tue)
+- Steak strips — 400 g (Fri fajitas)
 - Streaky bacon — 1 pack (lunch wraps)
 - Burgers — only if not covered by Sunday leftovers
 
-## Fresh produce
-- Peppers — 6 (Tue, Thu, Fri)
-- Lettuce — 2 (lunch wraps + Mon tacos)
-- Potatoes — 2 kg (tatties Wed, oven chips as backup)
+## Fruit & veg
+- Peppers — 5 (Tue, Thu, Fri)
+- Lettuce — 1–2 (lunch wraps + Mon tacos)
+- Potatoes — 1.5 kg
 - Sweet potatoes
 - Carrots
-- Peas (fresh or frozen)
-- Lemons — 2 (Tue honey-lemon chicken)
+- Peas
+- Lemons — 2 (Tue)
 - Onions and garlic
-- Spring onion and cucumber — if doing the hoisin pancakes
+- Spring onion and cucumber (Lola, Tue)
 
-## Chilled & dairy
+## Chilled
 - Milk
 - Greek yoghurts
-- Cheese (grated for tacos and pasta)
+- Cheese (grated)
 - Caesar dressing
-- Garlic bread
+- Garlic bread (Lola, Thu)
 
 ## Cupboard
-- Tortilla wraps — 2 packs (lunches, tacos, Mon)
-- Taco kit or shells, plus seasoning
+- Tortilla wraps — 2 packs
+- Taco shells and seasoning
 - Fajita kit box
-- Pasta
+- Pasta (Lola, Thu)
 - Arrabbiata sauce
-- Rice (Wed second option)
+- Rice (Lola, Wed)
 - Honey
-- Hoisin sauce
-- Chinese pancakes
-- Oven chips (frozen)
+- Hoisin sauce (Lola, Tue)
+- Chinese pancakes (Lola, Tue)
 
-## Lola
-- Breakfast items — TBC
+## Freezer & staples
+- Oven chips
+- Lola's breakfast — TBC

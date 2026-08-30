@@ -1,22 +1,22 @@
 # Weekly Menu
 
-Transcribed from the handwritten planner.
+Two adults and Lola, Monday to Friday. Transcribed from the handwritten planner.
 
 ## Lunches
 
 - **Mon** — Burgers (Sunday leftovers)
-- **Tue–Fri** — Chicken breast wraps: Caesar dressing, bacon, lettuce
+- **Tue–Fri** — Chicken breast wraps: Caesar dressing, bacon, lettuce (adults)
 
 ## Dinners
 
-| Day | Protein | Main | With |
+| Day | Protein | Us | Lola |
 |---|---|---|---|
-| Mon | Mince | Tacos | Wraps, lettuce — *Lola approved* |
-| Tue | Chicken | Lemon & honey chicken legs | Peppers · second option: hoisin pancakes |
-| Wed | Mince | Mince & tatties | Peas, carrots, tatties · second option: chicken & rice |
-| Thu | Chicken | Chicken breast arrabbiata | Peppers, pasta, garlic bread |
-| Fri | Steak | Steak fajitas (fajita kit box) | Peppers |
+| Mon | Mince | Tacos — wraps, lettuce, cheese | Same — tacos (*Lola ✓*) |
+| Tue | Chicken | Lemon & honey chicken legs, peppers | Hoisin pancakes |
+| Wed | Mince | Mince & tatties — peas, carrots, tatties | Chicken & rice |
+| Thu | Chicken | Chicken breast arrabbiata, peppers | Pasta & garlic bread |
+| Fri | Steak | Steak fajitas (kit box), peppers | Same — fajitas |
 
 ## Standing staples
 
-Oven chips · Greek yoghurts · cheese · wraps · sweet potatoes · milk · Lola's breakfast
+Oven chips · Greek yoghurts · cheese · wraps · sweet potatoes · milk · Lola's breakfast (TBC)

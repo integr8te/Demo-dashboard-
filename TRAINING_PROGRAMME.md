@@ -86,21 +86,45 @@ If a lift has not moved in 3 sessions: check sleep and calories first, then swap
 
 Re-test after each block: squat/RDL 6-rep weight, bench 8-rep weight, max pull-ups, bodyweight (7-day average), waist measurement.
 
-## Nutrition targets (set before starting)
+## Nutrition targets – goal: build muscle, bodyweight ~112 kg
 
-- **Protein:** 1.6–2.2 g per kg of bodyweight daily. Non-negotiable regardless of goal.
-- **Calories – pick ONE goal per block:**
-  - Build muscle: ~200–300 kcal above maintenance; aim to gain ~0.25–0.5% bodyweight/week.
-  - Lose fat: ~300–500 kcal below maintenance; aim to lose ~0.5–1% bodyweight/week.
-- Weigh daily, judge on the **weekly average**, adjust calories by ~150 kcal if the trend is off for 2 weeks.
+### Step 1 – Find your real maintenance (from data you already have)
+Take your last 14–21 days of logged calories and daily weigh-ins.
+If the weekly-average weight was flat, your average intake **is** maintenance.
+If it moved, adjust: every 0.5 kg/week gained ≈ 550 kcal/day above maintenance (and vice versa).
+This beats any online calculator.
+
+### Step 2 – Choose the approach using waist-to-height ratio
+Measure waist at the belly button, relaxed, first thing in the morning. Divide by height (same units).
+
+| Waist ÷ height | Approach | Calories | Target weight trend |
+|---|---|---|---|
+| **Under 0.50** | Lean bulk | Maintenance **+200–300 kcal** | +0.3–0.5 kg / week |
+| **0.50 or above** | Recomposition | Maintenance to **−300 kcal** | Flat to −0.5 kg / week |
+
+Recomposition still builds muscle: success = lifts going up while waist goes down, even if the scale barely moves.
+
+### Step 3 – Fixed daily targets
+- **Protein: 180–200 g/day.** (1.6–1.8 g/kg at 112 kg; above that returns diminish.) Spread over 3–5 meals of 40–50 g.
+- **Fat:** ~80–100 g/day minimum.
+- **Carbs:** the rest of your calories – put most of them around training.
+- **Sleep:** 7+ hours. Muscle is built during recovery, not in the session.
+
+### Step 4 – Review every 2 weeks
+- Weigh daily, judge on the **7-day average**.
+- Bulk gaining faster than 0.5 kg/week, or waist up more than ~1 cm per month → drop 150 kcal.
+- Bulk not gaining for 2 weeks and lifts stalled → add 150 kcal.
+- Recomp: waist not dropping and lifts not rising for 3 weeks → drop 150 kcal.
 
 ## Data to capture (for the app you're planning)
 
 Minimum schema that makes this programme trackable:
 
+- `profile`: height, goal (lean bulk / recomp), maintenance kcal, target kcal, target protein
 - `session`: date, day type (A/B/C), block week, bodyweight
 - `set`: exercise, set number, weight, reps, RIR, superset tag
 - `daily`: calories, protein (g), sleep hours
 - `block_test`: date, test lift results, waist measurement
 
-With that data you can auto-flag "ready to increase load" (top of range hit on all sets) and "stalled" (no progress in 3 sessions).
+With that data you can auto-flag "ready to increase load" (top of range hit on all sets) and "stalled" (no progress in 3 sessions), and compute maintenance automatically
+from 3 weeks of calories vs 7-day-average weight.

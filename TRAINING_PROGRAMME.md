@@ -88,6 +88,16 @@ Re-test after each block: squat/RDL 6-rep weight, bench 8-rep weight, max pull-u
 
 ## Nutrition targets – goal: build muscle, bodyweight ~112 kg
 
+> **Decision for this profile (112 kg, 158–170 cm): Recomposition with a moderate deficit.**
+> At this height/weight, waist-to-height is almost certainly above 0.50, so a surplus would add
+> mostly fat. A deficit + high protein + progressive lifting still builds muscle at this stage.
+>
+> - **Calories:** maintenance **−400 to −500 kcal/day** (work out maintenance with Step 1 below)
+> - **Target weight trend:** −0.5 to −0.9 kg/week (7-day average)
+> - **Protein:** 180 g/day
+> - **Success metric:** lifts rising + waist falling. Measure waist every 2 weeks.
+> - Re-assess when waist ÷ height drops below ~0.55: move towards maintenance, then lean bulk below 0.50.
+
 ### Step 1 – Find your real maintenance (from data you already have)
 Take your last 14–21 days of logged calories and daily weigh-ins.
 If the weekly-average weight was flat, your average intake **is** maintenance.

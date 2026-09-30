@@ -1,8 +1,8 @@
 date,session,order,exercise,superset,sets,weight_kg,reps,rir,notes
 2026-09-28,freestyle,1,Single-Arm Cable Curl,,3,23,,,cable stack number - machine-specific
-2026-09-28,freestyle,2,Back Squat,A,3,32,,,bar included? unconfirmed
+2026-09-28,freestyle,2,Back Squat,A,3,32,10,,bar included (12 kg plates)
 2026-09-28,freestyle,3,Shoulder Shrug,A,3,25,,,
-2026-09-28,freestyle,4,Bench Press,B,3,32,,,bar included? unconfirmed
+2026-09-28,freestyle,4,Bench Press,B,3,32,8,,bar included (12 kg plates)
 2026-09-28,freestyle,5,Bent-Over Barbell Row,B,3,22,,,
 2026-09-28,freestyle,6,Bird Dog (opposite arm/leg raise),C,3,0,20,,bodyweight
 2026-09-28,freestyle,7,Crunch,C,3,0,10,,bodyweight
